@@ -12,6 +12,13 @@ class Counter extends Component {
         padding: "10px 5px"
     }
 
+    //function call when the component is created
+    constructor() {
+        super();
+        this.handleIncrement = this.handleIncrement.bind(this);//binding the reference of the current Counter object. 
+        //This method returns a new function
+    }
+
     render() { 
         let spanClasses = this.getBadgeClasses();
 
@@ -27,7 +34,7 @@ class Counter extends Component {
     }
     
     handleIncrement() {
-        console.log('Increment clicked');
+        console.log('Increment clicked', this);
     }
 
     getBadgeClasses() {
