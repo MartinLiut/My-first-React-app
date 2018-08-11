@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
     state = {
-        count: 0,
-        tags: ['tag1', 'tag2', 'tag3']
+        value: this.props.value
     };
 
     stylesSpan = {
@@ -13,11 +12,11 @@ class Counter extends Component {
     }
 
     //function call when the component is created
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleIncrement = this.handleIncrement.bind(this);//binding the reference of the current Counter object. 
         //This method returns a new function
-    }
+    }; 
 
     render() { 
         let spanClasses = this.getBadgeClasses();
@@ -26,26 +25,23 @@ class Counter extends Component {
             <div>
                 <span style={this.stylesSpan} className={this.getBadgeClasses()}>{this.formatCount()}</span>
                 <button onClick={this.handleIncrement} className="btn btn-default btn-sm">Increment</button>
-                <ul>
-                    { this.state.tags.map(tag => <li key={tag  }>{tag}</li>)}
-                </ul>
             </div>
         );
     }
     
     handleIncrement() {
-        this.setState({count: this.state.count + 1});
+        this.setState({value: this.state.value + 1});
     }
 
     getBadgeClasses() {
         let spanClasses = "badge m-2 badge-";
-        spanClasses += this.state.count === 0 ? 'warning' : 'primary';
+        spanClasses += this.state.value === 0 ? 'warning' : 'primary';
         return spanClasses;
     }
 
     formatCount() {
-        const {count} = this.state ; 
-        return count === 0 ? 'Zero' : count; 
+        const {value} = this.state ; 
+        return value === 0 ? 'Zero' : value; 
     }
 }
  
