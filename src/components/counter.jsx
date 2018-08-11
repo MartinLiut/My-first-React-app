@@ -19,10 +19,12 @@ class Counter extends Component {
     }; 
 
     render() { 
+        console.log('props', this.props);
         let spanClasses = this.getBadgeClasses();
 
         return (
             <div>
+                {this.props.children}
                 <span style={this.stylesSpan} className={this.getBadgeClasses()}>{this.formatCount()}</span>
                 <button onClick={this.handleIncrement} className="btn btn-default btn-sm">Increment</button>
             </div>
