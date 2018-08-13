@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    state = {
-        value: this.props.counter.value
-    };
-
     stylesSpan = {
         fontWeight: 'bold',
         fontSize: 12,
@@ -14,7 +10,7 @@ class Counter extends Component {
     //function call when the component is created
     constructor(props) {
         super(props);
-        this.handleIncrement = this.handleIncrement.bind(this);//binding the reference of the current Counter object. 
+        this.handleIncrement = this.props.onIncrement.bind(this);//binding the reference of the current Counter object. 
         //This method returns a new function
     }; 
 
@@ -25,24 +21,20 @@ class Counter extends Component {
             <div>
                 {this.props.children}
                 <span style={this.stylesSpan} className={this.getBadgeClasses()}>{this.formatCount()}</span>
-                <button onClick={this.handleIncrement} className="btn btn-default btn-sm">Increment</button>
+                <button onClick={() => this.props.onIncrement(this.props.counter)} className="btn btn-default btn-sm">Increment</button>
                 <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger m-2 btn-sm">X</button>
             </div>
         );
     }
-    
-    handleIncrement() {
-        this.setState({value: this.state.value + 1});
-    }
 
     getBadgeClasses() {
         let spanClasses = "badge m-2 badge-";
-        spanClasses += this.state.value === 0 ? 'warning' : 'primary';
+        spanClasses += this.props.counter.value === 0 ? 'warning' : 'primary';
         return spanClasses;
     }
 
     formatCount() {
-        const {value} = this.state ; 
+        const {value} = this.props.counter ; 
         return value === 0 ? 'Zero' : value; 
     }
 }
