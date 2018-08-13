@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 
-class NavBar extends Component {
-    render() { 
-        return ( 
-            <nav className="navbar navbar-light bg-light">
-                <h2>Products: <span className="badge badge-pill badge-secondary">{this.props.totalCounters}</span></h2>
-            </nav>
-        );
-    }
+//Stateless functional component:
+//We dont' use a Component class. Else we use a simple variable to return the view, because this component
+//doesn't have any state nor event.
+//One difference with the other components is that props have to be included as a parameter in the arrow function.
+const NavBar = (props) => {
+    return ( 
+        <nav className="navbar navbar-light bg-light">
+            <h2>Products: <span className="badge badge-pill badge-secondary">{props.totalCounters}</span></h2>
+        </nav>
+    );
 }
+
+/*class NavBar extends Component {
+    render() { 
+        
+    }
+}*/
  
 export default NavBar;
